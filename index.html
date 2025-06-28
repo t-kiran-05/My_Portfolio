@@ -1,70 +1,513 @@
-<!-- Save this as index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tayyiba Kiran | Portfolio</title>
+  <title>Tayyiba Kiran | Mobile App & AI Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #f9f9f9; color: #333; }
-    header, footer { text-align: center; padding: 2rem 1rem; background: #222; color: #fff; }
-    main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-    h1, h2 { color: #0055cc; }
-    .section { margin-bottom: 2rem; }
-    a { color: #0055cc; text-decoration: none; }
-    .project { background: #fff; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid #0055cc; }
-    .contact a { display: inline-block; margin-right: 1rem; }
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --accent: #f72585;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: var(--light);
+      color: var(--dark);
+      scroll-behavior: smooth;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--dark), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+      opacity: 0.2;
+      z-index: 0;
+    }
+    
+    header > * {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .header-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+    
+    .tagline {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      transition: transform 0.3s, color 0.3s;
+    }
+    
+    .social-links a:hover {
+      transform: translateY(-3px);
+      color: var(--accent);
+    }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    
+    section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+    }
+    
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    
+    .skill {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .project {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      background: white;
+      border: 1px solid #eee;
+    }
+    
+    .project:hover {
+      transform: translateY(-10px);
+    }
+    
+    .project-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    
+    .project-content {
+      padding: 1.5rem;
+    }
+    
+    .project h3 {
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .project p {
+      margin-bottom: 1rem;
+      color: #666;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    
+    .demo-link {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .demo-link:hover {
+      background: var(--secondary);
+    }
+    
+    .code-link {
+      background: white;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    
+    .code-link:hover {
+      background: #f0f4ff;
+    }
+    
+    .contact-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .contact-card {
+      flex: 1;
+      min-width: 250px;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.3s;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .contact-icon {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 99;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+    }
+    
+    .back-to-top:hover {
+      background: var(--accent);
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .tagline {
+        font-size: 1rem;
+      }
+      
+      section {
+        padding: 1.5rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Tayyiba Kiran</h1>
-    <p>Mobile App Developer | Flutter  | Python & ML s</p>
-    <p>
-      <a href="https://linkedin.com/in/tayyibakiran" target="_blank">LinkedIn</a> |
-      <a href="https://github.com/t-kiran-05" target="_blank">GitHub</a> |
-      <a href="mailto:kiran.tayyiba@outlook.com">Email</a>
-    </p>
+    <div class="header-content">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Tayyiba Kiran" class="profile-img">
+      <h1>Tayyiba Kiran</h1>
+      <p class="tagline">Mobile App Developer | Flutter Expert | AI/ML Enthusiast</p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/tayyibakiran" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/t-kiran-05" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:kiran.tayyiba@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
   </header>
 
   <main>
-    <div class="section">
+    <section id="about">
       <h2>About Me</h2>
-      <p>
-        I'm a passionate mobile app developer and web developer with AI and ML algorithms integration and a computer science student experienced in building
-        real-world projects using flutter, ReactJS, REST APIs, and Firebase. I'm also actively exploring AI and ML applications using Python.
-      </p>
-    </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I'm a passionate computer science student and developer specializing in mobile applications with Flutter and AI/ML integration. I love building solutions that bridge the gap between technology and real-world problems.</p>
+          <p>With experience in full-stack development, I create seamless user experiences from the frontend to backend. My current focus is on integrating machine learning models into mobile applications to create intelligent, adaptive solutions.</p>
+          <div class="skills">
+            <span class="skill">Flutter</span>
+            <span class="skill">Dart</span>
+            <span class="skill">Firebase</span>
+            <span class="skill">Python</span>
+            <span class="skill">Machine Learning</span>
+            <span class="skill">ReactJS</span>
+            <span class="skill">Node.js</span>
+            <span class="skill">REST APIs</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>Projects</h2>
-      <div class="project">
-        <h3>Real-time Chat App</h3>
-        <p>Built using ReactJS, Node.js, and WebSocket for real-time messaging and notifications.</p>
-        <a href="https://github.com/t-kiran-05" target="_blank">View Code</a>
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="project">
+          <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Real-time Chat App" class="project-img">
+          <div class="project-content">
+            <h3>Real-time Chat App</h3>
+            <p>A responsive chat application with real-time messaging, user authentication, and notification system built with React, Node.js, and WebSocket.</p>
+            <div class="project-links">
+              <a href="https://github.com/t-kiran-05/chat-app" target="_blank" class="code-link">
+                <i class="fab fa-github"></i> Code
+              </a>
+              <a href="#" class="demo-link">
+                <i class="fas fa-external-link-alt"></i> Demo
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Loan Management App" class="project-img">
+          <div class="project-content">
+            <h3>Loan Management App</h3>
+            <p>Flutter application with Firebase backend featuring role-based dashboards, loan tracking, and push notifications for financial institutions.</p>
+            <div class="project-links">
+              <a href="https://github.com/t-kiran-05/loan-management" target="_blank" class="code-link">
+                <i class="fab fa-github"></i> Code
+              </a>
+              <a href="#" class="demo-link">
+                <i class="fas fa-external-link-alt"></i> Demo
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project">
+          <img src="https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Fake News Detection" class="project-img">
+          <div class="project-content">
+            <h3>Fake News Detection</h3>
+            <p>Machine learning model that classifies news articles using NLP techniques with a Flask API backend and React frontend interface.</p>
+            <div class="project-links">
+              <a href="https://github.com/t-kiran-05/TAYYIBA-KIRAN-DSMP-python/blob/main/Fake_News_Detection_Tayyiba_kiran_notebook_DSMP.ipynb" target="_blank" class="code-link">
+                <i class="fab fa-github"></i> Code
+              </a>
+              <a href="#" class="demo-link">
+                <i class="fas fa-external-link-alt"></i> Demo
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="project">
-        <h3>Loan Management App</h3>
-        <p>Flutter + Firebase app with authentication, role-based dashboards, and push notifications.</p>
-        <a href="https://github.com/t-kiran-05" target="_blank">View Code</a>
-      </div>
-      <div class="project">
-        <h3>Fake News Detection</h3>
-        <p>Python Flask API that classifies fake news using NLP and TF-IDF vectorization.</p>
-        <a href="https://github.com/t-kiran-05" target="_blank">View Code</a>
-      </div>
-    </div>
+    </section>
 
-    <div class="section contact">
-      <h2>Contact</h2>
-      <p>Let’s connect for freelance, internships, or collaboration:</p>
-      <a href="mailto:kiran.tayyiba@outlook.com">Email Me</a>
-      <a href="https://linkedin.com/in/tayyibakiran" target="_blank">LinkedIn</a>
-    </div>
+    <section id="contact">
+      <h2>Get In Touch</h2>
+      <p>I'm currently looking for new opportunities in mobile development and AI integration. Feel free to reach out for collaborations, freelance work, or just to say hello!</p>
+      
+      <div class="contact-methods">
+        <a href="mailto:kiran.tayyiba@outlook.com" class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <h3>Email Me</h3>
+            <p>kiran.tayyiba@outlook.com</p>
+          </div>
+        </a>
+        
+        <a href="https://linkedin.com/in/tayyibakiran" target="_blank" class="contact-card">
+          <div class="contact-icon">
+            <i class="fab fa-linkedin"></i>
+          </div>
+          <div>
+            <h3>LinkedIn</h3>
+            <p>Connect professionally</p>
+          </div>
+        </a>
+        
+        <a href="https://github.com/t-kiran-05" target="_blank" class="contact-card">
+          <div class="contact-icon">
+            <i class="fab fa-github"></i>
+          </div>
+          <div>
+            <h3>GitHub</h3>
+            <p>View my projects</p>
+          </div>
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>© 2025 Tayyiba Kiran. All rights reserved.</p>
+    <p>&copy; 2025 Tayyiba Kiran. All rights reserved.</p>
+    <p>Built with ❤️ and pure HTML/CSS</p>
   </footer>
+
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Back to top button
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Animation on scroll
+    const animateOnScroll = () => {
+      const sections = document.querySelectorAll('section');
+      
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (sectionTop < windowHeight - 100) {
+          section.style.opacity = '1';
+          section.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    // Initialize sections with hidden state
+    document.querySelectorAll('section').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(20px)';
+      section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
 </body>
 </html>
